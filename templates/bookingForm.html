@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+a {
+    padding: 8px;
+}
+
+form {
+    padding: 8px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<a href="">Return to Home</a>
+<h1>Booking Form</h1>
+
+{% if messages %}
+<ul class = "messages">
+    {% for message in messages %}
+    <li {% if message.tags %} class ="{{ message.tags }}" {% endif %}>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<p>*Required</p>
+<a href="/exibook">List of Existing Bookings</a>
+<form method='POST' action='.'> {% csrf_token %}
+    {{ form.as_p }}
+    <button type='submit'>Submit Request</button>
+</form> 
+
+{% endblock %}

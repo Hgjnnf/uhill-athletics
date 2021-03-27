@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% block style %}
+<style>
+body {
+    font-family: arial, sans-serif;
+    text-align: center;
+}
+
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+}
+
+table.center {
+    margin-left:auto;
+    margin-right:auto;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+a {
+    font-family: arial, sans-serif;
+    padding: 8px;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <div class = 'row'>
+        <h2>Existing Bookings</h2>
+        <br>
+        <table class="center">
+            <tr>
+                <th>Room</th>
+                <th>Booked From</th>
+                <th>Booked Until</th>
+                <th>Date</th>
+            </tr>
+            {% for instance in object_list %}
+            <tr>
+                <td>{{ instance.room }}</td>
+                <td>{{ instance.book_from }}</td>
+                <td>{{ instance.book_until }}</td>
+                <td>{{ instance.date }}</td>
+            {% endfor %}
+        </table>
+        <br>
+        <a href="/book">Return to the Form</a>
+    </div>
+
+
+{% endblock %}

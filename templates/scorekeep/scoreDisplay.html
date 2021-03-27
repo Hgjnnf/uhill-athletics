@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div>
+    {% if sport == bb %}
+        <h1>{{ object.homeScore }}</h1>
+        <h1>{{ object.awayScore }}</h1>
+    {% elif sport == vb %}
+        <div>
+            <table>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+    {% endif %}
+</div>
+<div class = 'row'>
+    {% if request.user.is_authenticated %}
+        {% if request.user.is_staff %}
+        <div class='col-sm'>
+        </div>
+        <div class = 'col-sm' style = "text-align:center">
+            <form method='POST' action='.' enctype='multipart/form-data'> {% csrf_token %}
+                {{ form.as_p }}
+                <button type='submit'>Update</button>
+            </form> 
+        </div>
+        {% endif %}
+        <div class='col-sm'>
+            <div class="text-right">
+                <div class="align-bottom">
+                    <a href = '{{ object.get_delete_url }}'>Delete</a>
+                </div>
+            </div>
+        </div>
+    {% endif %}
+</div>
+{% endblock %}
